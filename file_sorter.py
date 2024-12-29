@@ -89,11 +89,37 @@ file_formats = {
     ]
 }
 
-# Checking if the dictionary is properly read
+""" Checking if the dictionary is properly read
 for category, extensions in file_formats.items():
     print(f"{category}: {extensions}")
+"""
 
 # Preparing for further processing
 fileTypes = list(file_formats.keys())
 fileFormats = list(file_formats.values())
 
+print("Automated File Sorter Started")
+# Loop for scanning the contents of the current directory
+for file in os.scandir():
+    fileName = pathlib.Path(file)
+    fileFormatType = fileName.suffix.lower()
+
+    src = str(fileName)
+    if fileFormatType == "":
+        print(f" {src} has no file format")
+    else:
+        for formats in fileFormats:
+            if fileFormatType in formats:
+                folder = fileTypes[fileFormats.index(formats)]
+                print(folder)
+                if os.path.isdir(folder) == False:
+                    os.mkdir(folder)
+                dest = folder
+        else:
+            if os.path.isdir("Others") == False:
+                os.mkdir("Others")
+
+    print(src, " moved to ", dest, " ! ")
+    shutil.move(src, dest)
+
+input("\n Press ENTER to Exit.")
