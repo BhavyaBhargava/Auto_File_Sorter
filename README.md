@@ -6,12 +6,11 @@ File management is a universal struggle for anyone using a computer, especially 
 This problem inspired the creation of **Automated File Sorter**, a Python script designed to bring order to your unorganized folders. It efficiently scans through all the files, identifies their type based on the file format, and moves them into categorized folders such as `Documents`, `Images`, `Videos`, and more. For unknown or uncommon file formats, it creates an "Others" folder.
 
 ## Features
-- Categorizes files into predefined folders based on their type:
-  - Documents, Spreadsheets, Presentations, Images, Audio, Video, and more.
-- Automatically creates folders if they don’t already exist.
-- Handles files with no extensions by skipping or reporting them.
-- Places unsupported or uncategorized files into an `Others` folder.
-- Simple and efficient sorting mechanism using Python's `os` and `shutil` modules.
+- **File Categorization**: Automatically sorts files into predefined categories such as Documents, Images, Audio, Video, etc.
+- **Handles Missing Folders**: Creates categorized folders only if they don't already exist.
+- **Ignores Existing Folders**: Ensures existing categorized folders are not mistakenly processed.
+- **Fallback for Unknown Formats**: Moves unrecognized file types to an "Others" folder.
+- **Weekly Automation**: A bash script runs the sorter weekly using a cron job.
 
 ## File Types Supported
 The script supports the following file types:
@@ -50,13 +49,18 @@ After running the script, your Downloads folder is transformed into an organized
 ## Usage
 ### Prerequisites
 - Python 3.x installed on your system.
+### Setup Instructions
 
-### Steps to Run the Script
-1. Save the script file in the directory you want to organize.
-2. Open a terminal or command prompt.
-3. Navigate to the folder containing the script.
-4. Run the script using:
+#### Python Script
+1. Copy the `file_sorter.py` script to the folder you want to organize.
+2. Ensure you have Python 3 installed on your system.
+
+#### Bash Script
+1. Save the provided bash script as `file_sorter_scheduler.sh`.
+2. Replace `/path/to/your/folder` in the script with the absolute path to your folder.
+3. Run the following commands to make the bash script executable and initiate the sorter:
    ```bash
-   python file_sorter.py
+   chmod +x file_sorter_scheduler.sh
+   ./file_sorter_scheduler.sh
 
 >>> Watch your files get organized into categorized folders!
